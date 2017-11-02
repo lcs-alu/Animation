@@ -9,6 +9,9 @@ class Sketch : NSObject {
     // Position of circle
     var x : Int
     
+    // Horizontal speed
+    var dx : Int
+    
     // This function runs once
     override init() {
         
@@ -16,18 +19,41 @@ class Sketch : NSObject {
         canvas = Canvas(width: 500, height: 500)
         
         // Set starting position
-        x = 250
+        x = random(from: 0, toButNotIncluding: 500)
         
+        // Set a starting speed
+        dx = 1
     }
     
     // Runs in a loop, forever, to create the animated effect
     func draw() {
         
-        // Change position
-        x += 1
+        // Clear the background
+        canvas.fillColor = Color.white
+        canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: canvas.width, height: canvas.height)
         
+        // Change position
+        x += dx
+        
+        // Boucing at the right side
+        if x > 500 {
+            dx = -1
+        }
+        
+        // Boucing at the left side
+        if x < 0 {
+            dx = 1
+        }
+        
+        // Show the position and the speed
+        print("Position is \(x)")
+        print("Speed is \(dx)")
+
         // Draw an ellipse in the middle of the canvas
+        canvas.fillColor = Color.black
         canvas.drawEllipse(centreX: x, centreY: 250, width: 50, height: 50)
+        
+        
         
     }
     
