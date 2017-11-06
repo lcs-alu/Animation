@@ -30,8 +30,8 @@ class Sketch : NSObject {
         y = random(from: 0, toButNotIncluding: 500)
         
         // Set a starting speed
-        dx = 5
-        dy = 5
+        dx = 1
+        dy = 1
     }
     
     // Runs in a loop, forever, to create the animated effect
@@ -57,12 +57,12 @@ class Sketch : NSObject {
         
         // Boucing at the up side
         if y > 500 {
-            dy = -5
+            dy = -1
         }
         
         // Boucing at the bottom side
         if y < 0 {
-            dy = 5
+            dy = 1
         }
         
         // Show the position and the speed
